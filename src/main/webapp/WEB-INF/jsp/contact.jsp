@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
   <section class="section" id="contact">
     <div class="container">
@@ -6,8 +7,12 @@
       <div class="section-heading">
         <h3 class="title is-2">Contact</h3>
         <h4 class="subtitle is-5">Get in touch</h4>
+        <c:if test="${errorMessage != null}">
+        <h4 class="subtitle is-5">error: ${errorMessage}</h4>
+        </c:if>
       </div>
       <br/>
+
       <div class="columns">
         <div class="column is-6 is-offset-3">
           <div class="box">
