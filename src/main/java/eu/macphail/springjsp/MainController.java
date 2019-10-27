@@ -1,9 +1,10 @@
 package eu.macphail.springjsp;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +34,6 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView index(Model model) {
-        log.info("Model contains: ");
-        model.asMap().forEach((key, value) -> log.info(key + " -> " + value));
-
         if(model.containsAttribute("org.springframework.validation.BindingResult.contact")) {
             ContactMessage contact = (ContactMessage) model.getAttribute("contact");
             return new ModelAndView("index", buildModel(contact, "Error in form")
@@ -60,6 +58,11 @@ public class MainController {
         log.info("Receiving contact message from " + message.getName() + " at " + message.getEmail());
         log.info("Message is " + message.getMessage());
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String accessLoginPage() {
+        return "login";
     }
 
     private Map<String, Object> buildModel() {
