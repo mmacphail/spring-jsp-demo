@@ -9,7 +9,7 @@
 
 ## Install
 
-Clone this repository. Then use gradle to build it.
+Clone this repository. Then use maven to build it.
 ```sh
 ./mwnw clean install
 ```
